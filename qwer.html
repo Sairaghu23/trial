@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    @keyframes animate {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    #smoke-effect {
+      position: relative;
+      display: inline-block;
+      animation: animate 1s linear forwards;
+    }
+  </style>
+</head>
+<body>
+  <h1><span id="smoke-effect">Smoke Effect</span></h1>
+
+  <script>
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    const smokeEffect = document.getElementById('smoke-effect');
+
+    setInterval(() => {
+      const randomColor = getRandomColor();
+      smokeEffect.style.color = randomColor;
+    }, 1000);
+  </script>
+</body>
+</html>

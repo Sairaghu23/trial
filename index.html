@@ -1,0 +1,66 @@
+<html>
+<head>
+<style>
+html,body{
+  overflow:hidden;
+  margin:0;
+  padding:0;
+}
+iframe{
+  width: 100vw;
+  height: 100vh;
+  border:none;
+  pointer-events: auto;
+}
+#bar{
+  padding-left: 900px;
+ display: block;
+ position: inherit;
+ spacing:10px;
+}
+button
+{
+  border-radius: 10px;
+  background-color: grey;
+  color:blue;
+}
+</style>
+<script>
+function loadNewPage()
+{
+  var iframe = document.getElementById("myhome");
+  iframe.src="intro.html";
+}
+function get()
+{
+  var iframe = document.getElementById("myhome");
+  iframe.src="result.html";
+}
+function contact()
+{
+  var iframe = document.getElementById("myhome");
+  iframe.src="qwer.html";
+}
+</script>
+</head>
+<body>
+  <h1>Diploma Audisankara Website</h1>
+  <p>Created By Sai Anvesh</p>
+<div id="bar">
+<button><li onclick="loadNewPage()">
+HOME
+</li></button>
+<button><li onclick="get()">
+Results
+</li></button>
+<button><li onclick="contact()">
+Contact us
+</li></button>
+<button><li onclick="contact()">
+Login
+</li></button>
+
+</div>
+<iframe id="myhome" width="100%" height="100%" src="intro.html">
+</body>
+</html>
