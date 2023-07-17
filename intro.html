@@ -9,8 +9,25 @@ text-decoration: none;
 </head>
 <body>
 <marquee>
-<p><span>Note</span>span:WebSite Created By Diploma Final Year Students CME</p>
+<p><span id="smoke-effect">Note</span>span:WebSite Created By Diploma Final Year Students CME</p>
 </marquee>
+<script>
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    const smokeEffect = document.getElementById('smoke-effect');
+
+    setInterval(() => {
+      const randomColor = getRandomColor();
+      smokeEffect.style.color = randomColor;
+    }, 1000);
+  </script>
 <p>Road Map For Diploma CME:<a href="qwer.html" id="click">Click Here</a></p>
 </body>
 </html>
