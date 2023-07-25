@@ -1,0 +1,42 @@
+<html>
+<head>
+<style>
+iframe{
+  width: 100vw;
+  height: 100vh;
+  border:none;
+  pointer-events: auto;
+}
+</style>
+</head>
+<body>
+<script>
+function a(event)
+{
+event.preventDefault(); 
+var us=document.getElementById("us").value;
+var ps=document.getElementById("ps").value;
+if(us==='SaiAnvesh')
+{
+  if(ps==='231'){
+var iframe = document.getElementById("a");
+iframe.src="Dipoma1stresultspdf.pdf";
+}
+else
+{
+alert("Wrong Pin");
+}
+}
+else{
+alert("wrong Usernames");
+}
+}
+</script>
+<form onsubmit="return a(event)">
+User Name:<input type="text" size="20" required id="us">
+Password:<input type="password" size="20" id="ps" required>
+<input type="submit" value="SUBMIT" onclick="a()">
+</form>
+<iframe id="a" width="50%"></iframe>
+</body>
+</html>
