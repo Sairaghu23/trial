@@ -1,42 +1,75 @@
+<!DOCTYPE html>
 <html>
 <head>
 <style>
-iframe{
+iframe {
   width: 100vw;
   height: 100vh;
-  border:none;
+  border: none;
   pointer-events: auto;
 }
 </style>
+<!-- Add this in the head section of your HTML -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 </head>
 <body>
 <script>
-function a(event)
-{
-event.preventDefault(); 
-var us=document.getElementById("us").value;
-var ps=document.getElementById("ps").value;
-if(us==='SaiAnvesh')
-{
-  if(ps==='231'){
-var iframe = document.getElementById("a");
-iframe.src="Dipoma1stresultspdf.pdf";
-}
-else
-{
-alert("Wrong Pin");
-}
-}
-else{
-alert("wrong Usernames");
-}
+function a(event) {
+  event.preventDefault(); 
+  var us = document.getElementById("us").value;
+  var ps = document.getElementById("ps").value;
+  
+  if (us === 'SaiAnvesh' && ps === '231') {
+    // URL of the PDF file
+    const pdfUrl = "Dipoma1stresultspdf.pdf";
+
+    // Fetch the PDF document
+    const loadingTask = pdfjsLib.getDocument(pdfUrl);
+
+    // Rendering the PDF
+    loadingTask.promise.then(pdf => {
+      const numPages = pdf.numPages;
+      const scale = 1.5; // Adjust as needed
+
+      for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+        pdf.getPage(pageNum).then(page => {
+          // Set the canvas
+          const canvas = document.createElement('canvas');
+          canvas.className = 'pdf-page';
+          document.getElementById('pdfViewer').appendChild(canvas);
+
+          const context = canvas.getContext('2d');
+          const viewport = page.getViewport({ scale });
+
+          // Set canvas dimensions to match PDF
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          // Render the PDF page into the canvas
+          const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+          };
+          page.render(renderContext);
+        });
+      }
+    }).catch(error => {
+      console.error("Error loading PDF:", error);
+      alert("Failed to load PDF. Please try again later.");
+    });
+  } else {
+    alert("Invalid Credentials");
+  }
 }
 </script>
-<form onsubmit="return a(event)">
-User Name:<input type="text" size="20" required id="us">
-Password:<input type="password" size="20" id="ps" required>
-<input type="submit" value="SUBMIT" onclick="a()">
+<form onsubmit="a(event)">
+  User Name: <input type="text" size="20" required id="us">
+  Password: <input type="password" size="20" id="ps" required>
+  <input type="submit" value="SUBMIT">
 </form>
-<iframe id="a" width="50%"></iframe>
+<div id="pdfViewer">
+  <!-- PDF pages will be rendered here dynamically -->
+</div>
+
 </body>
 </html>
