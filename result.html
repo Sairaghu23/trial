@@ -19,6 +19,8 @@ var dowload = document.getElementById("dowload");
     case "22280-CM-001":
   imageContainer.innerHTML = '<img src="Dipoma1stresultspdf_page-0001.jpg" width="50%" alt="Result Image">';
   dowload.innerHTML='<input type="button" value="Dowload" onclick="dowload()">'
+   var loginForm = document.getElementById('form');
+      loginForm.parentNode.removeChild(loginForm);   
       break;
 default :
  error.innerHTML='<p style="color:red">ERROR OCCURED</p>';
@@ -71,10 +73,10 @@ Semester:
 <button type="button" onclick="location.reload()">Reload</button>
 </div>
 </form>
+</div>
 <div id="imageContainer">
 </div>
 <div id="dowload">
-</div>
 </div>
 <div>
 <footer id="footer">
